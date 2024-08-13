@@ -3,6 +3,7 @@ package com.java.connection;
 import org.junit.Test;
 import com.mysql.jdbc.Driver;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -96,6 +97,29 @@ public class ConnectionTest {
 
         // 3. 建立连接
         Connection connection = DriverManager.getConnection(url, info);
+
+        System.out.println(connection);
+    }
+
+    /**
+     * 方式五：优化连接配置通过配置文件实现，通过读取配置文件方式获取连接。
+     */
+    @Test
+    public void testConnection5() throws Exception {
+        // 1. 读取配置文件中的基本连接信息
+        InputStream resourceAsStream = ConnectionTest.class.getClassLoader().getResourceAsStream("jdbc.properties");
+        Properties properties = new Properties();
+        properties.load(resourceAsStream);
+        String user = properties.getProperty("user");
+        String password = properties.getProperty("password");
+        String url = properties.getProperty("url");
+        String driverClass = properties.getProperty("driverClass");
+
+        // 2. 加载驱动
+        Class.forName(driverClass);
+
+        // 3. 获取连接
+        Connection connection = DriverManager.getConnection(url, user, password);
 
         System.out.println(connection);
     }
