@@ -103,6 +103,7 @@ public class ConnectionTest {
 
     /**
      * 方式五：优化连接配置通过配置文件实现，通过读取配置文件方式获取连接。
+     * 实现了数据与代码分离，实现解耦。
      */
     @Test
     public void testConnection5() throws Exception {
