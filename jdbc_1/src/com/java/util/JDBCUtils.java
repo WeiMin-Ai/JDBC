@@ -41,7 +41,7 @@ public class JDBCUtils {
      * @param connection
      * @param statement
      */
-    public void closeResource(Connection connection, Statement statement) {
+    public static void closeResource(Connection connection, Statement statement) {
         // 7. 资源关闭
         try {
             if (statement != null) {

@@ -1,5 +1,6 @@
 package com.java2.preparedstatement.crud;
 
+import com.java.util.JDBCUtils;
 import com.java1.connection.ConnectionTest;
 import org.junit.Test;
 
@@ -77,5 +78,29 @@ public class PreparedStatementUpdateTest {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        // 1. 获取数据库连接
+        Connection connection = JDBCUtils.getConnection();
+
+        // 2. 预编译SQL语句，返回PreparedStatement的实例
+        String sql = "update customers set name=?,email=?,birth=? where name=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        // 3. 填充占位符
+        preparedStatement.setString(1, "weimin@1234");
+        preparedStatement.setString(2, "weimin@gmail.com");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = simpleDateFormat.parse("1942-01-01");
+        preparedStatement.setDate(3, new java.sql.Date(date.getTime()));
+        preparedStatement.setString(4, "weimin");
+
+        // 4. 执行操作
+        boolean execute = preparedStatement.execute();
+
+        // 5. 资源关闭
+        JDBCUtils.closeResource(connection, preparedStatement);
     }
 }
