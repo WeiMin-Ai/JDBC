@@ -76,10 +76,6 @@ public class PreparedStatementUpdateTest {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
         }
-
-
     }
 }
