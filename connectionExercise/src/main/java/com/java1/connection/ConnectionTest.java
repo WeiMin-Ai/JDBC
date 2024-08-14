@@ -1,4 +1,4 @@
-package com.java.connection;
+package com.java1.connection;
 
 import org.junit.Test;
 
