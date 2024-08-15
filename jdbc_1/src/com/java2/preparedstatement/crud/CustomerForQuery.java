@@ -83,7 +83,7 @@ public class CustomerForQuery {
             resultSet = preparedStatement.executeQuery();
 
             // 4. 处理结果集
-            // 判断结果集的下一条是否有数据，如果有数据则返回true，并指针下移。如果返回flase指针不会下移。
+            // 判断结果集的下一条是否有数据，如果有数据则返回true，并指针下移。如果返回false指针不会下移。
             if (resultSet.next()) {
                 // 5. 获取当前数据各个字段的值
                 String name = resultSet.getString("name");
