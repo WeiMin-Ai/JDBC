@@ -59,4 +59,36 @@ public class JDBCUtils {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 关闭资源操作
+     * @param connection
+     * @param statement
+     */
+    public static void closeResource(Connection connection, Statement statement, ResultSet resultSet) {
+        // 7. 资源关闭
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
