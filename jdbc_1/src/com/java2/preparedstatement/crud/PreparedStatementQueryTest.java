@@ -33,7 +33,7 @@ public class PreparedStatementQueryTest {
         listInstance.forEach(System.out::println);
     }
 
-    public <T> T getInstance(Class<T> clazz, String sql, Object... args) {
+    public static <T> T getInstance(Class<T> clazz, String sql, Object... args) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -63,7 +63,7 @@ public class PreparedStatementQueryTest {
                     Object value = resultSet.getObject(i + 1);
 
                     // 获取每个列的列名
-                    String columnName = metaData.getColumnName(i + 1);
+                    String columnName = metaData.getColumnLabel(i + 1);
 
                     // 给customers对象指定的columnName，赋值为columnValue，通过反射。
                     Field declaredField = clazz.getDeclaredField(columnName);
